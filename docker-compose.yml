@@ -1,0 +1,34 @@
+version: "3.7"
+
+# Define services
+services:
+
+  # MySQL DB for the application
+  db:
+    image: mysql:8.0.22
+    environment:
+      - MYSQL_DATABASE=users
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=Agrawal@192
+    networks:
+      - db
+      - app
+
+  # User Management SpringBoot Application
+  userManagementSystem:
+    image: user-mgmt-system:latest
+    command: ["java","-jar","/app.jar"]
+    ## Port available to other services
+    ports:
+      - '8081:8080'
+    working_dir: /usr/src/app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/users
+    depends_on:
+      - db
+    networks:
+      - app
+      - db
+networks:
+  db:
+  app:

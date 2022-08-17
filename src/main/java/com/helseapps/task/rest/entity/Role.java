@@ -1,0 +1,46 @@
+package com.helseapps.task.rest.entity;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name="roles")
+@Data
+@NoArgsConstructor
+public class Role {
+
+    public static final long USER = 2;
+    public static final long ADMINISTRATOR = 1;
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
+    @GenericGenerator(name = "native", strategy = "native")
+    @Column(name="id")
+    private Long id;
+
+    @Column(name="role", nullable = false)
+    private String role;
+
+    public Role(Long id, String role) {
+        this.id = id;
+        this.role = role;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Role )) return false;
+        return id != null && id.equals(((Role) o).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
+
+}

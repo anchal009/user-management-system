@@ -5,8 +5,6 @@ import java.util.Base64;
 /**
  * Provides a set of methods to encrypt or decrypt a String information.
  *
- * See {@http://www.appsdeveloperblog.com/ http://www.appsdeveloperblog.com/encrypt-user-password-example-java/}
- *
  */
 public class EncryptionService {
 

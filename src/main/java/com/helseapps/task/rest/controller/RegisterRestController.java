@@ -18,7 +18,7 @@ public class RegisterRestController {
     @Autowired
     private UserService userService;
 
-    // register a new user's account: no all the user information are required
+    // register a new user's account: not all the user information are required
     @PostMapping("/register")
     public ResponseEntity<UserDTO> registerNewUserAccount(@RequestBody RegisterUserAccountDTO registerUserAccountDTO) {
         return new ResponseEntity(new UserDTO(userService.registerUserAccount(registerUserAccountDTO)), null, HttpStatus.CREATED);

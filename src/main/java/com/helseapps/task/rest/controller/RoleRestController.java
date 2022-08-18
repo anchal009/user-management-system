@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/users/rbac")
+@RequestMapping(value = "/users/roles")
 public class RoleRestController {
 
     @Autowired

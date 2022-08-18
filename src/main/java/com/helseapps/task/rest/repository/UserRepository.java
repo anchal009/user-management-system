@@ -10,10 +10,6 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    /*@Query(value = "SELECT u FROM User u WHERE CONCAT(u.username, ' ', u.firstName, ' ', u.lastName, ' ', u.address, ' ', " +
-            "u.birthDay, ' ', u.email, ' ', u.gender, ' ', u.phoneNumber, ' ', u.note, ' ') LIKE %:keyword%")
-    List<User> search(@Param("keyword") String keyword);*/
-
     @Query(value = "SELECT u FROM User u WHERE CONCAT(COALESCE(u.username, ' '), COALESCE(u.firstName, ' '), " +
             "COALESCE(u.lastName, ' '),COALESCE( u.address, ' '), COALESCE(u.email, ' '), COALESCE(u.gender, ' ')" +
             ", COALESCE(u.birthDay, ' '), COALESCE(u.phoneNumber, ' '), COALESCE(u.note, ' ')) LIKE %?1%")

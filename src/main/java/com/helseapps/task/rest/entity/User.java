@@ -1,6 +1,8 @@
 package com.helseapps.task.rest.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -13,6 +15,8 @@ import java.util.Set;
 @Entity
 @Table(name="users")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -45,7 +49,7 @@ public class User {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "email")
+    @Column(name="email", nullable = false)
     private String email;
 
     @Column(name="enabled")
@@ -69,4 +73,11 @@ public class User {
                inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    public User(String userName, String password, String email, String firstName, String lastName) {
+        this.username = userName;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }

@@ -9,7 +9,7 @@ services:
     environment:
       - MYSQL_DATABASE=users
       - MYSQL_USER=root
-      - MYSQL_ROOT_PASSWORD=Agrawal@192
+      - MYSQL_ROOT_PASSWORD=password
     networks:
       - db
       - app

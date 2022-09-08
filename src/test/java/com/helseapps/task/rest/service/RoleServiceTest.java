@@ -1,7 +1,10 @@
 package com.helseapps.task.rest.service;
 
 import com.helseapps.task.rest.entity.Role;
-import com.helseapps.task.rest.exception.*;
+import com.helseapps.task.rest.exception.InvalidRoleDataException;
+import com.helseapps.task.rest.exception.InvalidRoleIdentifierException;
+import com.helseapps.task.rest.exception.RoleInUseException;
+import com.helseapps.task.rest.exception.RoleNotFoundException;
 import com.helseapps.task.rest.repository.RoleRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,11 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class RoleServiceTest {

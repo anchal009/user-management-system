@@ -29,7 +29,7 @@ public class RoleRestController {
 
     @PostMapping("/roles")
     public ResponseEntity<RoleDTO> createRole(@RequestBody String role) {
-        return new ResponseEntity(new RoleDTO(roleService.createRole(role)), null, HttpStatus.CREATED);
+        return new ResponseEntity<>(new RoleDTO(roleService.createRole(role)), null, HttpStatus.CREATED);
     }
 
     @GetMapping("/roles/{roleId}")

@@ -13,8 +13,7 @@ public class EncryptionService {
     }
 
     public static boolean isPasswordValid(String providedPassword,
-                                          String securedPassword)
-    {
+                                          String securedPassword) {
         String newSecurePassword = encrypt(providedPassword);
         // Check if the passwords are equal
         return newSecurePassword.equalsIgnoreCase(securedPassword);

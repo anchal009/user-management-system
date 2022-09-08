@@ -157,6 +157,7 @@ public class UserService {
         user.setFirstName(createUserDTO.getFirstName());
         user.setLastName(createUserDTO.getLastName());
         user.setGender(createUserDTO.getGender());
+        user.setEmail(createUserDTO.getEmail());
 
         // date of birth
         user.setBirthDay(createUserDTO.getBirthDay());
@@ -170,9 +171,6 @@ public class UserService {
         addUserRole(user, Role.ADMINISTRATOR);
 
         User userCreated = userRepository.save(user);
-
-        userCreated = userRepository.save(userCreated);
-
         log.info(String.format("User %s has been created.", userCreated.getId()));
         return userCreated;
     }
@@ -194,11 +192,7 @@ public class UserService {
             throw new InvalidUserDataException("User account data cannot be null");
         }
 
-        Optional<User> userOpt = userRepository.findById(id);
-        if (!userOpt.isPresent()) {
-            throw new UserNotFoundException(String.format("The user with Id = %s doesn't exists", id));
-        }
-        User user = userOpt.get();
+        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(String.format("The user with Id = %s doesn't exists", id)));
 
         // check if the username has not been registered
         User userByUsername = getUserByUsername(updateUserDTO.getUsername());
